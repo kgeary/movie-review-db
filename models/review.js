@@ -1,19 +1,23 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var Review = sequelize.define("Review", {
-    author: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     review: {
       type: DataTypes.STRING,
-      // Shoud I use type: DataTypes.TEXT instead? 
       allowNull: false,
       validate: {
         len: [300]
       }
-     }
+    },
+    score: {
+      type: DataTypes.DECIMAL(3, 1),
+      allowNull: false,
+      validate: {
+        isDecimal
+      }
+    },
+    title: {
+      type: DataTypes.STRING
+    }
   });
-
   Review.associate = function (models) {
     models.Review.belongsTo(models.User, {
       onDelete: "CASCADE",
@@ -21,6 +25,11 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
-  };  
+  };
   return Review;
 };
+
+
+
+
+
