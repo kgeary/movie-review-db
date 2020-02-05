@@ -14,6 +14,13 @@ module.exports = function(sequelize, DataTypes) {
      }
   });
 
-    
+  Review.associate = function (models) {
+    models.Review.belongsTo(models.User, {
+      onDelete: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };  
   return Review;
 };
