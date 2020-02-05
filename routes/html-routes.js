@@ -33,27 +33,22 @@ module.exports = function (app) {
   });
 
   app.get("/signup", function (req, res) {
-    // If the user already has an account send them to the members page
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
 
   app.get("/movies", function (req, res) {
-    // If the user already has an account send them to the members page
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
   app.get("/user/:id", function (req, res) {
-    // If the user already has an account send them to the members page
     res.sendFile(path.join(__dirname, "../public/user.html"));
   });
 
   app.get("/movie/:id", function (req, res) {
-    // If the user already has an account send them to the members page
     res.sendFile(path.join(__dirname, "../public/movie.html"));
   });
 
 
   app.get("/review", function (req, res) {
-    // If the user already has an account send them to the members page
     res.sendFile(path.join(__dirname, "../public/review.html"));
   });
 
