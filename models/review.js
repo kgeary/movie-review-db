@@ -11,7 +11,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.DECIMAL(3, 1),
       allowNull: false,
       validate: {
-        isDecimal
+        isDecimal: true
       }
     },
     title: {
