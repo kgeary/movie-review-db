@@ -1,7 +1,10 @@
 {
   "development": {
-    "dialect": "mysql",
-    "use_env_variable":"LOCALDB_URL"
+    "username": "root",
+    "password": "passdb123",
+    "database": "movie_review_db",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",
@@ -12,7 +15,6 @@
   },
   "production": {
     "dialect": "mysql",
-    "use_env_variable":"JAWSDB_URL"
-    
+    "use_env_variable": "JAWSDB_URL"
   }
 }
