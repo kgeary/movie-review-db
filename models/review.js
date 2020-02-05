@@ -1,10 +1,10 @@
 module.exports = function (sequelize, DataTypes) {
   var Review = sequelize.define("Review", {
     review: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
       validate: {
-        len: [300]
+        len: [1,900]
       }
     },
     score: {
