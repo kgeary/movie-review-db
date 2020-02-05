@@ -8,9 +8,6 @@ module.exports = function (app) {
 
   app.get("/", isAuthenticated, function (req, res) {
     // If the user already has an account send them to the members page
-    if (req.user) {
-      console.table(req.user);
-    }
     res.render("index", { msg: "Hi there!", user: req.user });
   });
 
@@ -19,7 +16,6 @@ module.exports = function (app) {
   });
 
   app.get("/members", function (req, res) {
-    console.table(req.user);
     res.render("members", { msg: "WHO DAT", user: req.user });
   });
 
