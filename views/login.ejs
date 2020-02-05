@@ -1,0 +1,24 @@
+<%- include('layout/header') -%>
+<%- include('layout/nav', {user}) -%>
+<div class="container">
+  <div class="columns">
+    <div class="column is-6 is-offset-3">
+      <br>
+      <h2 class="title">Login Form</h2>
+      <form class="login">
+        <div class="field">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="input" id="email-input" placeholder="Email">
+        </div>
+        <div class="field">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="input" id="password-input" placeholder="Password">
+        </div>
+        <button type="submit" class="button is-primary">Login</button>
+      </form>
+      <br />
+      <p>Or sign up <a href="/">here</a></p>
+    </div>
+  </div>
+</div>
+<%- include('layout/footer') -%>

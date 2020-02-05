@@ -7,3 +7,13 @@ form.signup, form.login {
   flex-direction: column;
   align-items: center;
 }
+
+.movie-image {
+  width: 128px;
+}
+
+.review-box {
+  min-height: 180px;
+  box-shadow: grey 10px 10px 10px;
+  border: 1px solid gray;
+}

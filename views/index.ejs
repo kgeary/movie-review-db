@@ -6,19 +6,25 @@
 </div>
 <script src="js/index.js"></script>
 
-<%  reviews.forEach(function(i) { %>
-<div class="box">
-  <h1><%= i.title %></h1>
-  <h2><%= i.score %></h2>
-  <p><%= i.review %></p>
-  <p>
-    <a href="/user/<%= i.User.id %>">
-      <%= i.User.email %>
-    </a>
-    <img src="<%= img %>">
-  </p>
+<div class="container">
+  <%  reviews.forEach(function(i) { %>
+  <div class="box review-box">
+    <article class="media">
+      <div class="media-left">
+        <figure class="image is-96x96">
+          <img class="movie-image" src="<%= img %>">
+        </figure>
+      </div>
+      <div class="media-content">
+        <p>
+          Movie: <a href="/movie/<%= i.Movie.id %>"><strong><%= i.Movie.title %></strong></a>
+          | Score: <strong><%= i.score %></strong>
+          | User: <a href="/user/<%= i.User.id %>"><%= i.User.email %> </a> </p>
+        <p><br><%= i.review %></p>
+      </div>
+    </article>
+  </div>
+  <% }) %>
 </div>
-<% }) %>
-
 
 <%- include('layout/footer') -%>
