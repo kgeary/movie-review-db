@@ -6,7 +6,7 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function (app) {
 
-  app.get("/", isAuthenticated, function (req, res) {
+  app.get("/", function (req, res) {
     // If the user already has an account send them to the members page
     res.render("index", { msg: "Hi there!", user: req.user });
   });
