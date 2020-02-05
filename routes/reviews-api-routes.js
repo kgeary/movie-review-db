@@ -19,7 +19,7 @@ module.exports = function(app) {
     });
   });
 
-  // POST route for saving a new post
+  // POST route for saving a new review
   app.post("/api/reviews", function(req,res) {
     // Write code here to create a new review and save it to the database
     var review = req.body;
