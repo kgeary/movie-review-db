@@ -6,16 +6,20 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function (app) {
 
-  app.get(["/", "/index"], function (req, res) {
+  app.get("/", isAuthenticated, function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+      console.table(req.user);
     }
-    //res.sendFile(path.join(__dirname, "../public/signup.html"));
     res.render("index", { msg: "Hi there!", user: req.user });
   });
 
+  app.get("/index", function (req, res) {
+    res.redirect("/");
+  });
+
   app.get("/members", function (req, res) {
+    console.table(req.user);
     res.render("members", { msg: "WHO DAT", user: req.user });
   });
 
@@ -23,7 +27,13 @@ module.exports = function (app) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/index");
+    } else {
+      res.sendFile(path.join(__dirname, "../public/login.html"));
     }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+  });
+
+  app.get("/logout", function (req, res) {
+    req.logOut();
+    res.redirect("/");
   });
 };
