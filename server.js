@@ -28,6 +28,8 @@ app.set("view engine", "ejs");
 // Requiring our routes
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
+require("./routes/reviews-api-routes.js")(app);
+require("./routes/user-api-routes.js")(app);
 
 // Syncing our database and logging a message to the user upon success
 var forceSync = false;
