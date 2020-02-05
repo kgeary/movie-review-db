@@ -32,6 +32,11 @@ module.exports = function (app) {
     }
   });
 
+  app.get("/signup", function (req, res) {
+    // If the user already has an account send them to the members page
+    res.sendFile(path.join(__dirname, "../public/signup.html"));
+  });
+
   app.get("/logout", function (req, res) {
     req.logOut();
     res.redirect("/");
