@@ -1,8 +1,20 @@
 var db = require("../models");
+var axios = require("axios");
 
-function FindMovieID(title, user) {
+async function addNewMovie(title) {
+  axios.get(query + title).then((data) => {
+    db.Movie.create({
+      title: data.Title,
+      rating: data.Rating,
+      img: data.Poster,
+      year: data.Year,
+    }).then((rec) => { return rec.id });
+  });
+}
+
+async function findMovieId(title, user) {
   db.Movie.findOne({ where: { title: title } })
-    .then(rows => {
+    .then(async (rows) => {
       var movieId;
       if (rows.length < 1) {
         // NEW MOVIE
@@ -12,19 +24,6 @@ function FindMovieID(title, user) {
       }
     });
 }
-
-async function addNewMovie(title) {
-  // queryombd
-  axios.get(query + title).then((data) => {
-    db.Movie.create({
-      title: data.Title,
-      rating: data.Rating,
-      img: data.Poster;
-      year: data.Year;
-    }).then((rec) => { return rec.id });
-  });
-}
-
 
 // Routes
 // =============================================================
@@ -47,16 +46,11 @@ module.exports = function (app) {
   });
 
   // POST route for saving a new post
-  app.post("/api/reviews", function (req, res) {
+  app.post("/api/reviews", async function (req, res) {
     // Write code here to create a new review and save it to the database
+    let id = await findMovieId(req.body.title, req.user);
+
     var review = req.body;
-    db.Review.create({
-      review: review.review,
-      score: review.score,
-      title: review.title,
-    })
-      .then(function (dbReview) {
-        res.json(dbReview);
-      });
+
   });
 };
