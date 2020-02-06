@@ -12,12 +12,19 @@ $("#add-review").on("click", function (event) {
     // on success, run this callback
     .then(function () {
       // log the data we found
+      // empty each input box by replacing the value with an empty string
+      $("#title").val("");
+      $("#score").val("");
+      $("#review").val("");
       window.location.replace("/");
     });
+});
 
-  // empty each input box by replacing the value with an empty string
-  $("#title").val("");
-  $("#score").val("");
-  $("#review").val("");
-
+var $review = $("#review");
+var LIMIT = 900;
+$("#charsRemain").text(LIMIT);
+$review.on("change keyup paste cut", function () {
+  console.log("CHANGE EVENT");
+  var charsRemain = LIMIT - $review.val().length;
+  $("#charsRemain").text(charsRemain);
 });

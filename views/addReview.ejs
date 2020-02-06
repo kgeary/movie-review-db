@@ -14,9 +14,8 @@
           <input type="tel" id="score" class="input" placeholder="Rating out of 10">
         </div>
         <div class="field">
-          <label for="review">Your Review (max 800 chars)</label>
-          <textarea id="review" class="textarea" rows="6" placeholder="Your Review">
-          </textarea>
+          <label for="review">Your Review (max 900 chars, remaining = <span id="charsRemain"></span>)</label>
+          <textarea id="review" class="textarea" rows="6" maxlength="900" placeholder="Your Review"></textarea>
         </div>
         <button id="add-review" type="submit" class="button is-primary">Add Review</button>
       </form>
