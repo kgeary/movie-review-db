@@ -19,8 +19,8 @@ async function addNewMovie(title) {
     db.Movie.create({
       title: data.Title,
       rating: data.Rating,
-      img: data.Poster;
-      year: data.Year;
+      img: data.Poster,
+      year: data.Year,
     }).then((rec) => { return rec.id });
   });
 }
