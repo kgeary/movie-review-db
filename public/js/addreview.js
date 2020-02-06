@@ -10,7 +10,7 @@ $("#add-review").on("click", function (event) {
 
   $.post("/api/reviews", newReview)
     // on success, run this callback
-    .then(function (data) {
+    .then(function () {
       // log the data we found
       window.location.replace("/");
     });
