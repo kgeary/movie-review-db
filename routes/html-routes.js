@@ -12,14 +12,14 @@ module.exports = function (app) {
     // If the user already has an account send them to the members page
     db.Review.findAll(
       {
-        include: [db.User, db.Movie], order: [["updatedAt", "ASC"]]
+        include: [db.User, db.Movie], order: [["updatedAt", "ASC"]], limit: 10
       }).then(function (myReviews) {
-      axios.get("http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + "goodfellas").then(function (omdbData) {
-        console.log(omdbData.data.Poster);
-        res.render("index", { title: "Most Recent Reviews", user: req.user, reviews: myReviews, img: omdbData.data.Poster });
-      });
+        axios.get("http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + "goodfellas").then(function (omdbData) {
+          console.log(omdbData.data.Poster);
+          res.render("index", { title: "Most Recent Reviews", user: req.user, reviews: myReviews, img: omdbData.data.Poster });
+        });
 
-    });
+      });
   });
 
   app.get("/members", function (req, res) {
