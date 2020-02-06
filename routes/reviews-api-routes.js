@@ -2,25 +2,28 @@ var db = require("../models");
 var axios = require("axios");
 
 async function addNewMovie(title) {
-  axios.get(query + title).then((data) => {
-    db.Movie.create({
-      title: data.Title,
-      rating: data.Rating,
-      img: data.Poster,
-      year: data.Year,
-    }).then((rec) => { return rec.id });
-  });
+  return await axios.get("http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + title)
+    .then(function (data) {
+      return db.Movie.create({
+        title: data.Title,
+        rating: data.Rating,
+        img: data.Poster,
+        year: data.Year
+      })
+    }).then((rec) => {
+      return rec.id
+    });
 }
 
 async function findMovieId(title, user) {
-  db.Movie.findOne({ where: { title: title } })
-    .then(async (rows) => {
+  return await db.Movie.findOne({ where: { title: title } })
+    .then(async (row) => {
       var movieId;
-      if (rows.length < 1) {
+      if (!row) {
         // NEW MOVIE
-        movieId = await addNewMovie(title)
+        return await addNewMovie(title);
       } else {
-        movieId = rows[0].id;
+        return row.id
       }
     });
 }
