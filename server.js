@@ -23,6 +23,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Set the view engine to ejs
+
 app.set("view engine", "ejs");
 
 // Requiring our routes
