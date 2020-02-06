@@ -2,15 +2,31 @@ var db = require("../models");
 var axios = require("axios");
 
 async function addNewMovie(title) {
+  console.log("DEBUG ADD NEW MOVIE", title);
   return await axios.get("http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + title)
-    .then(function (data) {
-      return db.Movie.create({
-        title: data.Title,
-        rating: data.Rating,
-        img: data.Poster,
-        year: data.Year
-      })
+    .then(function (res) {
+
+      var obj = {};
+      if (res.data.response === 'False') {
+        console.log("DATA NOT FOUND");
+        obj.title = title;
+        obj.rating = "?";
+        obj.img = "";
+        obj.year = 0;
+      } else {
+        console.log("DATA FOUND");
+        console.log(res.data);
+
+        obj = {
+          title: res.data.Title,
+          rating: res.data.Rated,
+          img: res.data.Poster,
+          year: res.data.Year.slice(-4)
+        };
+      }
+      return db.Movie.create(obj);
     }).then((rec) => {
+      console.log("MOVIE CREATE RES", rec);
       return rec.id
     });
 }
@@ -18,12 +34,13 @@ async function addNewMovie(title) {
 async function findMovieId(title, user) {
   return await db.Movie.findOne({ where: { title: title } })
     .then(async (row) => {
+      console.log("DEBUG ROW", row);
       var movieId;
       if (!row) {
         // NEW MOVIE
         return await addNewMovie(title);
       } else {
-        return row.id
+        return row.dataValues.id;
       }
     });
 }
@@ -50,8 +67,11 @@ module.exports = function (app) {
 
   // POST route for saving a new post
   app.post("/api/reviews", async function (req, res) {
+    console.log("DEBUG POST RX");
     // Write code here to create a new review and save it to the database
     let id = await findMovieId(req.body.title, req.user);
+
+    console.log("FINAL ID", id);
 
     var review = req.body;
 

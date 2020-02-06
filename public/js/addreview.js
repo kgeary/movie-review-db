@@ -1,15 +1,16 @@
-$("#add-review").on("click", function(event) {
-    event.preventDefault();
+console.log("IN ADD REVIEW JS");
+$("#add-review").on("click", function (event) {
+  event.preventDefault();
   var newReview = {
-  title: $("#title").val().trim(),
-rating: $("#score").val().trim(),
-  review: $("#review").val().trim(),
+    title: $("#title").val().trim(),
+    rating: $("#score").val().trim(),
+    review: $("#review").val().trim(),
 
-};
+  };
 
-$.post("/api/reviews", newReview)
+  $.post("/api/reviews", newReview)
     // on success, run this callback
-    .then(function(data) {
+    .then(function (data) {
       // log the data we found
       console.log(data);
       alert("Adding review...");
@@ -19,5 +20,5 @@ $.post("/api/reviews", newReview)
   $("#title").val("");
   $("#score").val("");
   $("#review").val("");
- 
+
 });
