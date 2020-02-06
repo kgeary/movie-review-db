@@ -1,0 +1,16 @@
+<%- include('layout/header') -%>
+<%- include('layout/nav', {user}) -%>
+<div class="container">
+  <%- include('layout/usersearch') -%>
+  <!-- <% if(user) { %> -->
+  <h1 class="title">Checkout reviews from <%= user.email %></h1>
+  <!-- <% } else { %> -->
+  <!-- <h1 class="title">Welcome</h1> -->
+  <!-- <% } %> -->
+  <h4 class="subtitle"><%= title %></h4>
+  <%  reviews.forEach(function(i) { %>
+  <%- include('layout/review', {review: i}) -%>
+  <% }) %>
+</div>
+<script src="js/index.js"></script>
+<%- include('layout/footer') -%>
