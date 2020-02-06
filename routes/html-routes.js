@@ -14,7 +14,8 @@ module.exports = function (app) {
       {
         include: [db.User, db.Movie], order: [["updatedAt", "ASC"]]
       }).then(function (myReviews) {
-      axios.get("http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + "frozen").then(function (omdbData) {
+      axios.get("http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + "goodfellas").then(function (omdbData) {
+        console.log(omdbData.data.Poster);
         res.render("index", { title: "Most Recent Reviews", user: req.user, reviews: myReviews, img: omdbData.data.Poster });
       });
 

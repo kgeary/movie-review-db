@@ -9,7 +9,14 @@ VALUES
   ("eee@gmail.com", "eee", NOW(), NOW());
 INSERT INTO movies (title, rating, year, img, createdAt, updatedAt)
 VALUES
-  ("Frozen", "G", 2007, "", NOW(), NOW()),
+  (
+    "Frozen",
+    "G",
+    2007,
+    "https://m.media-amazon.com/images/M/MV5BMTQ1MjQwMTE5OF5BMl5BanBnXkFtZTgwNjk3MTcyMDE@._V1_SX300.jpg",
+    NOW(),
+    NOW()
+  ),
   ("The Matrix", "R", 1999, "", NOW(), NOW()),
   (
     "Gone With the Wind",
@@ -19,7 +26,14 @@ VALUES
     NOW(),
     NOW()
   ),
-  ("Goodfellas", "R", 1997, "", NOW(), NOW());
+  (
+    "Goodfellas",
+    "R",
+    1997,
+    "https://m.media-amazon.com/images/M/MV5BY2NkZjEzMDgtN2RjYy00YzM1LWI4ZmQtMjIwYjFjNmI3ZGEwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
+    NOW(),
+    NOW()
+  );
 -- Insert Reviews --
 INSERT INTO reviews (
     review,

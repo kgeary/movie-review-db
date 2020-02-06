@@ -2,16 +2,24 @@
   <article class="media">
     <div class="media-left">
       <figure class="image is-96x96">
-        <img class="movie-image" src="<%= img %>">
+        <img class="movie-image" alt="Movie Coverbox" src="<%= review.Movie.img || img %>">
       </figure>
     </div>
     <div class="media-content">
-      <p>
-        Movie: <a href="/movie/<%= review.Movie.id %>"><strong><%= review.Movie.title %></strong></a>
-        | Score: <strong><%= review.score %></strong>
-        | User: <a href="/user/<%= review.User.id %>"><%= review.User.email %></a>
-        | Last Updated: <%= review.updatedAt.toDateString() %>
-      </p>
+      <div class="media-header">
+        <div class="media-item">
+          Movie: <a href="/movie/<%= review.Movie.id %>"><strong><%= review.Movie.title %></strong></a>
+        </div>
+        <div class="media-item">
+          Score: <strong><%= review.score %></strong>
+        </div>
+        <div class="media-item">
+          User: <a href="/user/<%= review.User.id %>"><%= review.User.email %></a>
+        </div>
+        <div class="media-item">
+          Last Updated: <%= review.updatedAt.toDateString() %>
+        </div>
+      </div>
       <p><br><%= review.review %></p>
     </div>
   </article>
