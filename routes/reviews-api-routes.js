@@ -7,12 +7,12 @@ async function addNewMovie(title) {
     .then(function (res) {
 
       var obj = {};
-      if (res.data.response === 'False') {
+      if (res.data.Response === 'False') {
         console.log("DATA NOT FOUND");
         obj.title = title;
         obj.rating = "?";
         obj.img = "";
-        obj.year = 0;
+        obj.year = 1999;
       } else {
         console.log("DATA FOUND");
         console.log(res.data);
