@@ -1,5 +1,4 @@
 // Requiring path to so we can use relative routes to our HTML files
-const path = require("path");
 var db = require("../models");
 var axios = require("axios");
 
@@ -13,27 +12,28 @@ module.exports = function (app) {
     // If the user already has an account send them to the members page
     db.Review.findAll(
       {
-        include: [
-          {
-            model: db.User
-          },
-          {
-            model: db.Movie
-          }],
-        order: [["updatedAt", "ASC"]]
+        include: [db.User, db.Movie], order: [["updatedAt", "ASC"]]
       }).then(function (myReviews) {
-      axios.get("http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + "frozen").then(function (omdbData) {
-        res.render("index", { msg: "Hi there!", user: req.user, reviews: myReviews, img: omdbData.data.Poster });
+      axios.get("http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + "goodfellas").then(function (omdbData) {
+        console.log(omdbData.data.Poster);
+        res.render("index", { title: "Most Recent Reviews", user: req.user, reviews: myReviews, img: omdbData.data.Poster });
       });
 
     });
+  });
+
+  app.get("/members", function (req, res) {
+    res.render("members", { msg: "WHATS UP", user: req.user });
   });
 
   app.get("/index", function (req, res) {
     res.redirect("/");
   });
 
-  app.get("/members", function (req, res) {
+  app.get("/user/:id?", function (req, res) {
+    if (req.params.id) {
+      res.render("members", { msg: "WHO DAT", user: req.user });
+    }
     res.render("members", { msg: "WHO DAT", user: req.user });
   });
 
@@ -47,25 +47,36 @@ module.exports = function (app) {
   });
 
   app.get("/signup", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
+    res.render("signup", { user: null });
   });
 
-  app.get("/movies", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+  app.get("/movie", function (req, res) {
+    res.send(404); // TODO
   });
   app.get("/user/:id", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/user.html"));
+    res.send(404); // TODO
   });
 
   app.get("/movie/:id", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/movie.html"));
+    res.send(404); // TODO
   });
 
+  app.get("/review/add", function (req, res) {
+    res.render("addReview", { user: req.user });
+  });
+
+  app.post("/review/add", function (req, res) {
+    // TODO
+    res.send(404);
+  });
 
   app.get("/review", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/review.html"));
+    res.send(404); // TODO
   });
 
+  app.get("/review/:id", function (req, res) {
+    res.send(404); // TODO
+  });
 
   app.get("/logout", function (req, res) {
     req.logOut();

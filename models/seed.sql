@@ -1,5 +1,4 @@
 USE movie_review_db;
-
 -- Insert Users --
 INSERT INTO users (email, password, createdAt, updatedAt)
 VALUES
@@ -10,7 +9,14 @@ VALUES
   ("eee@gmail.com", "eee", NOW(), NOW());
 INSERT INTO movies (title, rating, year, img, createdAt, updatedAt)
 VALUES
-  ("Frozen", "G", 2007, "", NOW(), NOW()),
+  (
+    "Frozen",
+    "G",
+    2007,
+    "https://m.media-amazon.com/images/M/MV5BMTQ1MjQwMTE5OF5BMl5BanBnXkFtZTgwNjk3MTcyMDE@._V1_SX300.jpg",
+    NOW(),
+    NOW()
+  ),
   ("The Matrix", "R", 1999, "", NOW(), NOW()),
   (
     "Gone With the Wind",
@@ -20,8 +26,15 @@ VALUES
     NOW(),
     NOW()
   ),
-  ("Goodfellas", "R", 1997, "", NOW(), NOW());
-  -- Insert Reviews --
+  (
+    "Goodfellas",
+    "R",
+    1997,
+    "https://m.media-amazon.com/images/M/MV5BY2NkZjEzMDgtN2RjYy00YzM1LWI4ZmQtMjIwYjFjNmI3ZGEwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
+    NOW(),
+    NOW()
+  );
+-- Insert Reviews --
 INSERT INTO reviews (
     review,
     score,
@@ -42,8 +55,8 @@ VALUES
   (
     "Typical Disney soundtrack.Catchy songs and colorful characters.Refreshing that the movie is about a strong woman who does not need a prince to rescue her.",
     8.0,
-    1,
     2,
+    1,
     NOW(),
     NOW()
   ),
@@ -55,7 +68,14 @@ VALUES
     NOW(),
     NOW()
   ),
-  ("With a visionary direction and script by the Wachowskis, a beautiful soundtrack by Don Davis, perfect visual effects, striking action scenes, cutting - edge cinematography by Bill Pope", 9, 4, 2, NOW(), NOW()),
+  (
+    "With a visionary direction and script by the Wachowskis, a beautiful soundtrack by Don Davis, perfect visual effects, striking action scenes, cutting - edge cinematography by Bill Pope",
+    9,
+    4,
+    2,
+    NOW(),
+    NOW()
+  ),
   (
     "Keanu Reeves is brilliant along with all the cast! Amazing movie!",
     9.0,
