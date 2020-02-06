@@ -31,10 +31,10 @@ module.exports = function (app) {
       where: {
         UserId: req.params.id
       },
-      include: [db.User,db.Movie]
-    }).then(function(dbReview) {
+      include: [db.User, db.Movie]
+    }).then(function (dbReview) {
       console.log(dbReview);
-      res.render("index", { title: "Reviews BY User", user: req.user, reviews:dbReview});
+      res.render("index", { title: "Reviews BY User", user: req.user, reviews: dbReview });
     });
   });
 
@@ -58,10 +58,10 @@ module.exports = function (app) {
       where: {
         MovieId: req.params.id
       },
-      include: [db.user,db.Movie]
-    }).then(function(dbReview) {
+      include: [db.User, db.Movie]
+    }).then(function (dbReview) {
       console.log(dbReview);
-      res.render("index", { title: "Reviews", user: req.user, reviews:dbReview});
+      res.render("index", { title: "Reviews", user: req.user, reviews: dbReview });
     });
 
   });
