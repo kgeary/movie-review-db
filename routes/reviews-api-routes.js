@@ -7,7 +7,7 @@ async function addNewMovie(title) {
     .then(function (res) {
 
       var obj = {};
-      if (res.data.Response === 'False') {
+      if (res.data.Response === "False") {
         console.log("DATA NOT FOUND");
         obj.title = title;
         obj.rating = "?";
@@ -27,15 +27,14 @@ async function addNewMovie(title) {
       return db.Movie.create(obj);
     }).then((rec) => {
       console.log("MOVIE CREATE RES", rec);
-      return rec.id
+      return rec.id;
     });
 }
 
-async function findMovieId(title, user) {
+async function findMovieId(title) {
   return await db.Movie.findOne({ where: { title: title } })
     .then(async (row) => {
       console.log("DEBUG ROW", row);
-      var movieId;
       if (!row) {
         // NEW MOVIE
         return await addNewMovie(title);
@@ -78,7 +77,7 @@ module.exports = function (app) {
       score: req.body.score,
       MovieId: id,
       UserId: req.user.id
-    }).then(dbResponse => {
+    }).then(() => {
       res.redirect("/");
     });
   });
