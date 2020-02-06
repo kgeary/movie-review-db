@@ -73,6 +73,15 @@ module.exports = function (app) {
 
     console.log("FINAL ID", id);
 
+    db.Review.create({
+      review: req.body.review,
+      score: req.body.score,
+      MovieId: id,
+      UserId: req.user.id
+    }).then(res => {
+
+    });
+
     var review = req.body;
 
   });

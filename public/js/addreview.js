@@ -3,7 +3,7 @@ $("#add-review").on("click", function (event) {
   event.preventDefault();
   var newReview = {
     title: $("#title").val().trim(),
-    rating: $("#score").val().trim(),
+    score: $("#score").val().trim(),
     review: $("#review").val().trim(),
 
   };
