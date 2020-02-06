@@ -2,7 +2,7 @@
 var db = require("../models");
 
 // Requiring our custom middleware for checking if a user is logged in
-//var isAuthenticated = require("../config/middleware/isAuthenticated");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 
 module.exports = function (app) {
@@ -10,9 +10,9 @@ module.exports = function (app) {
   app.get("/", function (req, res) {
     // If the user already has an account send them to the members page
     db.Review.findAll({
-      include: [db.User, db.Movie], order: [["updatedAt", "ASC"]], limit: 10
+      include: [db.User, db.Movie], order: [["updatedAt", "DESC"]], limit: 10
     }).then(function (myReviews) {
-      res.render("index", { title: "Most Recent Reviews", user: req.user, reviews: myReviews, img: "" });
+      res.render("index", { title: "Most Recent Reviews", user: req.user, reviews: myReviews });
     });
   });
 
@@ -55,13 +55,8 @@ module.exports = function (app) {
     res.send(404); // TODO
   });
 
-  app.get("/review/add", function (req, res) {
+  app.get("/review/add", isAuthenticated, function (req, res) {
     res.render("addReview", { user: req.user });
-  });
-
-  app.post("/review/add", function (req, res) {
-    // TODO
-    res.send(404);
   });
 
   app.get("/review", function (req, res) {

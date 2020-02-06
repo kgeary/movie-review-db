@@ -12,8 +12,7 @@ $("#add-review").on("click", function (event) {
     // on success, run this callback
     .then(function (data) {
       // log the data we found
-      console.log(data);
-      alert("Adding review...");
+      window.location.replace("/");
     });
 
   // empty each input box by replacing the value with an empty string

@@ -78,11 +78,8 @@ module.exports = function (app) {
       score: req.body.score,
       MovieId: id,
       UserId: req.user.id
-    }).then(res => {
-
+    }).then(dbResponse => {
+      res.redirect("/");
     });
-
-    var review = req.body;
-
   });
 };
