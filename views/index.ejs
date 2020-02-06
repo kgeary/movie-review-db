@@ -8,6 +8,9 @@
   <h1 class="title">Welcome</h1>
   <% } %>
   <h4 class="subtitle"><%= title %></h4>
+  <%  if(!reviews.length) { %>
+  <h1 class="title">No Records Found</h1>
+  <% } %>
   <%  reviews.forEach(function(i) { %>
   <%- include('layout/review', {review: i}) -%>
   <% }) %>

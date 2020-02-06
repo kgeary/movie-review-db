@@ -16,8 +16,6 @@ module.exports = function (app) {
     });
   });
 
-
-
   app.get("/members", function (req, res) {
     res.render("members", { msg: "WHATS UP", user: req.user });
   });
@@ -26,16 +24,24 @@ module.exports = function (app) {
     res.redirect("/");
   });
 
-  app.get("/user/:id", function (req, res) {
-    db.Review.findAll({
-      where: {
-        UserId: req.params.id
-      },
-      include: [db.User, db.Movie]
-    }).then(function (dbReview) {
-      console.log(dbReview);
-      res.render("index", { title: "Reviews BY User", user: req.user, reviews: dbReview });
-    });
+  app.get("/user/:id?", function (req, res) {
+
+    if (!req.params.id && !req.user) {
+      res.redirect("/login");
+    } else {
+      let id = req.params.id || req.user.id;
+
+      db.Review.findAll({
+        where: {
+          UserId: id
+        },
+        include: [db.User, db.Movie]
+      }).then(function (dbReview) {
+        console.log(dbReview);
+        res.render("index", { title: "Reviews BY User", user: req.user, reviews: dbReview });
+      });
+    }
+
   });
 
 
@@ -52,6 +58,11 @@ module.exports = function (app) {
     res.render("signup", { user: null });
   });
 
+  // Route for logging user out
+  app.get("/logout", function (req, res) {
+    req.logout();
+    res.redirect("/");
+  });
 
   app.get("/movie/:id", function (req, res) {
     db.Review.findAll({
