@@ -7,12 +7,14 @@
     "start": "node server.js",
     "watch": "nodemon server.js",
     "lint": "eslint . --quiet",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "fix": "eslint . --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
     "bcryptjs": "2.4.3",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",

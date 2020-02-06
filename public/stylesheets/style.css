@@ -1,4 +1,39 @@
-form.signup,
-form.login {
+form.signup, form.login {
   margin-top: 50px;
+}
+
+.hero-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.media-header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.media-item {
+  padding: 0.25rem 1rem;
+}
+
+.media-item:first-child {
+  padding: 0;
+}
+
+.review-box {
+  min-height: 180px;
+  box-shadow: grey 10px 10px 10px;
+  border: 1px solid gray;
+}
+
+@media screen and (max-width: 600px) {
+  .media-header {
+    flex-direction: column;
+    align-items: start;
+  }
+  .media-item {
+    padding-left: 0;
+  }
 }

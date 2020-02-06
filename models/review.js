@@ -4,7 +4,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
-        len: [1,900]
+        len: [1, 900]
       }
     },
     score: {
@@ -14,13 +14,16 @@ module.exports = function (sequelize, DataTypes) {
         isDecimal: true
       }
     },
-    title: {
-      type: DataTypes.STRING
-    }
   });
   Review.associate = function (models) {
     models.Review.belongsTo(models.User, {
       onDelete: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    });
+    models.Review.belongsTo(models.Movie, {
+      onDelete: "RESTRICT",
       foreignKey: {
         allowNull: false
       }

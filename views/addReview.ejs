@@ -1,0 +1,26 @@
+<%- include('layout/header') -%>
+<%- include('layout/nav', {user}) -%>
+<div class="container">
+  <div class="columns">
+    <div class="column is-6 is-offset-3">
+      <h1 class="title">Add a New Review</h1>
+      <form class="form reviewForm">
+        <div class="field">
+          <label for="title">Movie Name</label>
+          <input type="text" id="title" class="input" placeholder="Movie Name">
+        </div>
+        <div class="field">
+          <label for="rating">Your Rating (1 to 10, 10 being the best)</label>
+          <input type="tel" id="rating" class="input" placeholder="Rating out of 10">
+        </div>
+        <div class="field">
+          <label for="review">Your Review (max 800 chars)</label>
+          <textarea id="review" class="textarea" rows="6" placeholder="Your Review">
+          </textarea>
+        </div>
+        <button type="submit" class="button is-primary">Add Review</button>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include('layout/footer') -%>
