@@ -16,6 +16,8 @@ module.exports = function (app) {
     });
   });
 
+
+
   app.get("/members", function (req, res) {
     res.render("members", { msg: "WHATS UP", user: req.user });
   });
@@ -24,12 +26,18 @@ module.exports = function (app) {
     res.redirect("/");
   });
 
-  app.get("/user/:id?", function (req, res) {
-    if (req.params.id) {
-      res.render("members", { msg: "WHO DAT", user: req.user });
-    }
-    res.render("members", { msg: "WHO DAT", user: req.user });
+  app.get("/user/:id", function (req, res) {
+    db.Review.findAll({
+      where: {
+        UserId: req.params.id
+      },
+      include: [db.User,db.Movie]
+    }).then(function(dbReview) {
+      console.log(dbReview);
+      res.render("index", { title: "Reviews BY User", user: req.user, reviews:dbReview});
+    });
   });
+
 
   app.get("/login", function (req, res) {
     // If the user already has an account send them to the members page
@@ -44,15 +52,18 @@ module.exports = function (app) {
     res.render("signup", { user: null });
   });
 
-  app.get("/movie", function (req, res) {
-    res.send(404); // TODO
-  });
-  app.get("/user/:id", function (req, res) {
-    res.send(404); // TODO
-  });
 
   app.get("/movie/:id", function (req, res) {
-    res.send(404); // TODO
+    db.Review.findAll({
+      where: {
+        MovieId: req.params.id
+      },
+      include: [db.user,db.Movie]
+    }).then(function(dbReview) {
+      console.log(dbReview);
+      res.render("index", { title: "Reviews", user: req.user, reviews:dbReview});
+    });
+
   });
 
   app.get("/review/add", isAuthenticated, function (req, res) {
