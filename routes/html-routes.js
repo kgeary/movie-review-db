@@ -1,17 +1,32 @@
 // Requiring path to so we can use relative routes to our HTML files
-var path = require("path");
+const path = require("path");
+var db = require("../models");
+var axios = require("axios");
 
 // Requiring our custom middleware for checking if a user is logged in
-var isAuthenticated = require("../config/middleware/isAuthenticated");
+//var isAuthenticated = require("../config/middleware/isAuthenticated");
+
 
 module.exports = function (app) {
 
-  app.get("/", isAuthenticated, function (req, res) {
+  app.get("/", function (req, res) {
     // If the user already has an account send them to the members page
-    if (req.user) {
-      console.table(req.user);
-    }
-    res.render("index", { msg: "Hi there!", user: req.user });
+    db.Review.findAll(
+      {
+        include: [
+          {
+            model: db.User
+          },
+          {
+            model: db.Movie
+          }],
+        order: [["updatedAt", "ASC"]]
+      }).then(function (myReviews) {
+      axios.get("http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + "frozen").then(function (omdbData) {
+        res.render("index", { msg: "Hi there!", user: req.user, reviews: myReviews, img: omdbData.data.Poster });
+      });
+
+    });
   });
 
   app.get("/index", function (req, res) {
@@ -19,7 +34,6 @@ module.exports = function (app) {
   });
 
   app.get("/members", function (req, res) {
-    console.table(req.user);
     res.render("members", { msg: "WHO DAT", user: req.user });
   });
 
@@ -28,7 +42,7 @@ module.exports = function (app) {
     if (req.user) {
       res.redirect("/index");
     } else {
-      res.sendFile(path.join(__dirname, "../public/login.html"));
+      res.render("login", { user: null });
     }
   });
 

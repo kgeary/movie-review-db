@@ -1,4 +1,19 @@
-form.signup,
-form.login {
+form.signup, form.login {
   margin-top: 50px;
+}
+
+.hero-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movie-image {
+  width: 128px;
+}
+
+.review-box {
+  min-height: 180px;
+  box-shadow: grey 10px 10px 10px;
+  border: 1px solid gray;
 }

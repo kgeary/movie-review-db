@@ -1,72 +1,30 @@
 <%- include('layout/header') -%>
 <%- include('layout/nav', {user}) -%>
-<h1><%= msg %></h1>
-<div id="site-content">
-  <header class="site-header">
-    <div class="container">
-      <div class="logo-copy">
-        <h1 class="site-title">Welcome to Super Awesome Movie Reviews</h1>
-        <small class="site-description">Where super awesome users leave reviews.</small>
-      </div>
-      <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Search for a movie title here</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
+<div class="container">
+  <%- include('layout/search') -%>
+  <div id="content"></div>
+</div>
+<script src="js/index.js"></script>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
-  </header>
-  <main class="main-content">
-    <div class="container">
-      <div class="page">
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="..." alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="..." alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="..." alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="..." alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="..." alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-  </main>
+<div class="container">
+  <%  reviews.forEach(function(i) { %>
+  <div class="box review-box">
+    <article class="media">
+      <div class="media-left">
+        <figure class="image is-96x96">
+          <img class="movie-image" src="<%= img %>">
+        </figure>
+      </div>
+      <div class="media-content">
+        <p>
+          Movie: <a href="/movie/<%= i.Movie.id %>"><strong><%= i.Movie.title %></strong></a>
+          | Score: <strong><%= i.score %></strong>
+          | User: <a href="/user/<%= i.User.id %>"><%= i.User.email %> </a> </p>
+        <p><br><%= i.review %></p>
+      </div>
+    </article>
+  </div>
+  <% }) %>
 </div>
 
 <%- include('layout/footer') -%>
