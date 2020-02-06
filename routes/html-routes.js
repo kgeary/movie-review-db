@@ -1,5 +1,4 @@
 // Requiring path to so we can use relative routes to our HTML files
-const path = require("path");
 var db = require("../models");
 var axios = require("axios");
 
@@ -15,11 +14,11 @@ module.exports = function (app) {
       {
         include: [db.User, db.Movie], order: [["updatedAt", "ASC"]]
       }).then(function (myReviews) {
-        axios.get("http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + "frozen").then(function (omdbData) {
-          res.render("index", { title: "Most Recent Reviews", user: req.user, reviews: myReviews, img: omdbData.data.Poster });
-        });
-
+      axios.get("http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + "frozen").then(function (omdbData) {
+        res.render("index", { title: "Most Recent Reviews", user: req.user, reviews: myReviews, img: omdbData.data.Poster });
       });
+
+    });
   });
 
   app.get("/members", function (req, res) {
@@ -58,7 +57,7 @@ module.exports = function (app) {
   });
 
   app.get("/movie/:id", function (req, res) {
-    res.send(404); // TODO    
+    res.send(404); // TODO
   });
 
   app.get("/review/add", function (req, res) {
