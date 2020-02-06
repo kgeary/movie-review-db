@@ -26,7 +26,7 @@ module.exports = function (app) {
     res.redirect("/");
   });
 
-  app.get("/user/:id?", function (req, res) {
+  app.get("/user/:id", function (req, res) {
     db.Review.findAll({
       where: {
         UserId: req.params.id
