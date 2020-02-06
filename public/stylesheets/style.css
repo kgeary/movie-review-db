@@ -8,9 +8,7 @@ form.signup, form.login {
   align-items: center;
 }
 
-.movie-image {
-  width: 128px;
-}
+.movie-image {}
 
 .review-box {
   min-height: 180px;

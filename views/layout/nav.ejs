@@ -18,9 +18,15 @@
         Home
       </a>
 
+      <% if (user) { %>
       <a class="navbar-item" href="/user">
         My Reviews
       </a>
+
+      <a class="navbar-item" href="/review/add">
+        Add Review
+      </a>
+      <% } %>
 
     </div>
 

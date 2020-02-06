@@ -1,0 +1,18 @@
+<div class="box review-box">
+  <article class="media">
+    <div class="media-left">
+      <figure class="image is-96x96">
+        <img class="movie-image" src="<%= img %>">
+      </figure>
+    </div>
+    <div class="media-content">
+      <p>
+        Movie: <a href="/movie/<%= review.Movie.id %>"><strong><%= review.Movie.title %></strong></a>
+        | Score: <strong><%= review.score %></strong>
+        | User: <a href="/user/<%= review.User.id %>"><%= review.User.email %></a>
+        | Last Updated: <%= review.updatedAt.toDateString() %>
+      </p>
+      <p><br><%= review.review %></p>
+    </div>
+  </article>
+</div>

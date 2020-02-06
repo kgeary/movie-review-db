@@ -5,7 +5,7 @@ $(document).ready(function () {
   var passwordInput = $("input#password-input");
 
   function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
+    $("#alert .msg").text(err.responseJSON.errors.map(i => i.message).join("\n"));
     $("#alert").fadeIn(500);
   }
 
@@ -17,7 +17,7 @@ $(document).ready(function () {
       password: password
     })
       .then(function () {
-        window.location.replace("/members");
+        window.location.replace("/");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);

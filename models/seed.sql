@@ -1,5 +1,4 @@
 USE movie_review_db;
-
 -- Insert Users --
 INSERT INTO users (email, password, createdAt, updatedAt)
 VALUES
@@ -21,7 +20,7 @@ VALUES
     NOW()
   ),
   ("Goodfellas", "R", 1997, "", NOW(), NOW());
-  -- Insert Reviews --
+-- Insert Reviews --
 INSERT INTO reviews (
     review,
     score,
@@ -42,8 +41,8 @@ VALUES
   (
     "Typical Disney soundtrack.Catchy songs and colorful characters.Refreshing that the movie is about a strong woman who does not need a prince to rescue her.",
     8.0,
-    1,
     2,
+    1,
     NOW(),
     NOW()
   ),
@@ -55,7 +54,14 @@ VALUES
     NOW(),
     NOW()
   ),
-  ("With a visionary direction and script by the Wachowskis, a beautiful soundtrack by Don Davis, perfect visual effects, striking action scenes, cutting - edge cinematography by Bill Pope", 9, 4, 2, NOW(), NOW()),
+  (
+    "With a visionary direction and script by the Wachowskis, a beautiful soundtrack by Don Davis, perfect visual effects, striking action scenes, cutting - edge cinematography by Bill Pope",
+    9,
+    4,
+    2,
+    NOW(),
+    NOW()
+  ),
   (
     "Keanu Reeves is brilliant along with all the cast! Amazing movie!",
     9.0,
