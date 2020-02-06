@@ -5,6 +5,10 @@
         "node": true,
         "es6": true
     },
+    "parserOptions": {
+        "ecmaVersion": 2017,
+        "sourceType": "module"
+    },
     "rules": {
         "no-duplicate-case": "error",
         "no-empty": "error",
