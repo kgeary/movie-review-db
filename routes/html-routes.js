@@ -1,6 +1,5 @@
 // Requiring path to so we can use relative routes to our HTML files
 var db = require("../models");
-var axios = require("axios");
 
 // Requiring our custom middleware for checking if a user is logged in
 //var isAuthenticated = require("../config/middleware/isAuthenticated");
@@ -10,16 +9,11 @@ module.exports = function (app) {
 
   app.get("/", function (req, res) {
     // If the user already has an account send them to the members page
-    db.Review.findAll(
-      {
-        include: [db.User, db.Movie], order: [["updatedAt", "ASC"]], limit: 10
-      }).then(function (myReviews) {
-        axios.get("http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + "goodfellas").then(function (omdbData) {
-          console.log(omdbData.data.Poster);
-          res.render("index", { title: "Most Recent Reviews", user: req.user, reviews: myReviews, img: omdbData.data.Poster });
-        });
-
-      });
+    db.Review.findAll({
+      include: [db.User, db.Movie], order: [["updatedAt", "ASC"]], limit: 10
+    }).then(function (myReviews) {
+      res.render("index", { title: "Most Recent Reviews", user: req.user, reviews: myReviews, img: "" });
+    });
   });
 
   app.get("/members", function (req, res) {
