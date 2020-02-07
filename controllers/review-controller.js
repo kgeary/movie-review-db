@@ -1,32 +1,9 @@
 var db = require("../models");
-var axios = require("axios");
-
-async function NormalizeMovie(title) {
-  const url = "http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + title;
-  const res = await axios.get(url);
-
-  let obj = {};
-
-  if (res.data.Response === "False") {
-    console.log("Title not found at OMDB");
-    obj.title = title.trim();
-  } else {
-    console.log("Title Found at OMDB -", res.data.Title);
-    obj.title = res.data.Title;
-    obj.rating = res.data.Rated;
-    obj.img = res.data.Poster;
-    try {
-      obj.year = res.data.Year.slice(-4);
-    } catch (err) {
-      oby.year = null;
-    }
-  }
-  return obj;
-}
+var normalize = require("../normalize");
 
 async function getMovieId(title) {
   // Normalize the title using OMDB and get details if it is a new title
-  const movie = await NormalizeMovie(title);
+  const movie = await normalize(title);
 
   // See if the movie exists in our database the movie in our database
   const row = await db.Movie.findOne({ where: { title: movie.title } });

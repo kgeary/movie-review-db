@@ -29,6 +29,7 @@ app.set("view engine", "ejs");
 require("./controllers/html-controller.js")(app);
 require("./controllers/review-controller.js")(app);
 require("./controllers/user-controller.js")(app);
+require("./controllers/movie-controller.js")(app);
 
 // Syncing our database and logging a message to the user upon success
 var forceSync = false;
