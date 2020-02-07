@@ -1,9 +1,9 @@
 var db = require("../models");
 var normalize = require("../normalize");
 
-async function getMovieId(title) {
+async function getMovieId(title, year) {
   // Normalize the title using OMDB and get details if it is a new title
-  const movie = await normalize(title);
+  const movie = await normalize(title, year);
 
   // See if the movie exists in our database the movie in our database
   const row = await db.Movie.findOne({ where: { title: movie.title } });
@@ -33,12 +33,13 @@ module.exports = function (app) {
 
   // POST route for saving a new post
   app.post("/api/reviews", async function (req, res) {
+    // Only allow authenticated users to post
     if (!req.user) {
       res.send(401);
     }
 
     // Get the Movie ID by finding it in the db or creating a new movie
-    let id = await getMovieId(req.body.title);
+    let id = await getMovieId(req.body.title, req.body.year);
 
     console.log("FINAL ID", id);
 
@@ -50,7 +51,7 @@ module.exports = function (app) {
         MovieId: id,
         UserId: req.user.id
       });
-      // Redirect to the home page
+      // Return the result
       res.json(result);
     } catch (err) {
       console.log("ERROR CREATING REVIEW", err);

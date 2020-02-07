@@ -1,7 +1,12 @@
 var axios = require("axios");
 
-async function normalizeMovie(title) {
-  const url = "http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + title;
+async function normalizeMovie(title, year) {
+  let url = "http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + title;
+
+  // Allow the user to request a specific year
+  if (year) {
+    url += "&y=" + year;
+  }
   const res = await axios.get(url);
 
   let obj = {};

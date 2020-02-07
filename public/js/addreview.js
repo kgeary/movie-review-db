@@ -8,7 +8,6 @@ $(document).ready(function () {
       title: $("#title").val().trim(),
       score: $("#score").val().trim(),
       review: $("#review").val().trim(),
-
     };
 
     // Post A New Review to Server
