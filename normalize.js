@@ -14,6 +14,7 @@ async function normalizeMovie(title, year) {
   if (res.data.Response === "False") {
     console.log("Title not found at OMDB");
     obj.title = title.trim();
+    obj.img = "/img/default.jpg";
   } else {
     console.log("Title Found at OMDB -", res.data.Title);
     obj.title = res.data.Title;
