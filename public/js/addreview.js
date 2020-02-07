@@ -1,12 +1,67 @@
 $(document).ready(function () {
   console.log("IN ADD REVIEW JS");
 
+  // Clear Movie
+  $("#clearMovie").on("click", function (event) {
+    event.preventDefault();
+    $("#mainForm").hide();
+    $("#review").val("");
+    $("#score").val("");
+    $("#title").val("").attr("readonly", "false");
+    $("#clearMovie").hide();
+    $("#findMovie").show();
+  });
+
+  // Find Movie
+  $("#findMovie").on("click", function (event) {
+    event.preventDefault();
+
+    // Hide the movie list and empty out old data
+    $("#movieList").hide().empty();
+
+    // Get the Movie Title
+    var title = $("#title").val().trim().replace(" ", "+");
+
+    if (title.length < 1) {
+      return;
+    }
+
+    // Create a list of possible movies to select for the user
+    $.get(`/api/find/${title}`).then(function (movies) {
+      console.log("Movies", movies);
+      movies.forEach((movie) => {
+        var movieTitle = movie.Title;
+        var movieYear = movie.Year;
+        var movieImdb = movie.imdbID;
+        var div = $(`<div class="movie-choice" data-id="${movieImdb}" data-title="${movieTitle}">`);
+        var p = $(`<p class="subtitle">`).text(movieTitle + " (" + movieYear + ")");
+        div.append(p);
+        $("#movieList").append(div);
+      });
+      $("#movieList").show();
+    });
+  });
+
+  // When a movie choice is selected
+  $("#movieList").on("click", ".movie-choice", function () {
+    console.log("CLICK DETECCTED");
+    var imdb = $(this).data("id");
+    var title = $(this).data("title");
+    $("#movieList").hide().empty();
+    $("#title").val(title).attr("data-id", imdb);
+    $("#title").attr("readonly", true);
+    $("#findMovie").hide();
+    $("#clearMovie").show();
+    $("#mainForm").show();
+  });
+
   // Add Review Button Click Event
   $("#add-review").on("click", function (event) {
     event.preventDefault();
     $("#alert .msg").text("");
     $("#alert").hide();
     var newReview = {
+      imdb: $("#title").attr("data-id"),
       title: $("#title").val().trim(),
       score: $("#score").val().trim(),
       review: $("#review").val().trim(),

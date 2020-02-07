@@ -56,6 +56,21 @@ footer a {
   padding: 0;
 }
 
+.movie-choice {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid gray;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.movie-choice:hover {
+  background-color: lightgray;
+  color: whitesmoke;
+}
+
 .movie-image {
   float: left;
   width: 128px;
