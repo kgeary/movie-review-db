@@ -34,7 +34,7 @@ $(document).ready(function () {
         var movieYear = movie.Year;
         var movieImdb = movie.imdbID;
         var div = $(`<div class="movie-choice" data-id="${movieImdb}" data-title="${movieTitle}">`);
-        var p = $(`<p class="subtitle">`).text(movieTitle + " (" + movieYear + ")");
+        var p = $("<p class=\"subtitle\">").text(movieTitle + " (" + movieYear + ")");
         div.append(p);
         $("#movieList").append(div);
       });
