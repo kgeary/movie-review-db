@@ -61,8 +61,8 @@ $(document).ready(function () {
     $.ajax({
       method: "DELETE",
       url: "/api/reviews/" + val,
-    }).then();
-    window.location.replace("/");
+    }).then( window.location.replace("/"));
+
   });
   // Keep Track of The # of Characters Remaining
   var $review = $("#review");
