@@ -1,11 +1,7 @@
 <div class="box review-box">
   <article class="media">
-    <div class="media-left">
-      <figure class="image is-128x128">
-        <img class="movie-image" alt="Movie Coverbox" src="<%= review.Movie.img %>">
-      </figure>
-    </div>
     <div class="media-content">
+      <img class="image movie-image" alt="Movie Coverbox" src="<%= review.Movie.img %>">
       <div class="media-header">
         <div class="media-item">
           Movie: <a href="/movie/<%= review.Movie.id %>"><strong><%= review.Movie.title %></strong></a>
@@ -30,6 +26,6 @@
       </div>
       <p><br><%= review.review %></p>
     </div>
-  </article> 
+  </article>
 </div>
 <script src="/js/addreview.js"></script>
