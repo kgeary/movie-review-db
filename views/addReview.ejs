@@ -2,7 +2,7 @@
 <%- include('layout/nav', {user}) -%>
 <div class="container">
   <div class="columns">
-    <div class="column is-6 is-offset-3">
+    <div class="column is-8 is-offset-2">
       <h1 class="title">Add a New Review</h1>
       <form class="form reviewForm">
         <div class="field">
@@ -14,14 +14,13 @@
           <input type="tel" id="score" class="input" placeholder="Rating out of 10">
         </div>
         <div class="field">
-          <label for="review">Your Review (max 800 chars)</label>
-          <textarea id="review" class="textarea" rows="6" placeholder="Your Review">
-          </textarea>
+          <label for="review">Your Review (max 900 chars, remaining = <span id="charsRemain"></span>)</label>
+          <textarea id="review" class="textarea" rows="6" maxlength="900" placeholder="Your Review"></textarea>
         </div>
-        <button id ="add-review" type="submit" class="button is-primary">Add Review</button>
+        <button id="add-review" type="submit" class="button is-primary">Add Review</button>
       </form>
     </div>
   </div>
 </div>
-<script src ="../js/addreview.js"></script>
+<script src="/js/addreview.js"></script>
 <%- include('layout/footer') -%>

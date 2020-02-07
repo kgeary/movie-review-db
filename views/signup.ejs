@@ -3,14 +3,15 @@
 <div class="container">
   <div class="columns">
     <div class="column is-6 is-offset-3">
+      <br>
       <h2 class="title">Sign Up Form</h2>
       <form class="signup">
         <div class="field">
-          <label for="exampleInputEmail1">Email address</label>
+          <label for="email-input">Email address</label>
           <input type="email" class="input" id="email-input" placeholder="Email">
         </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
+        <div class="field">
+          <label for="password-input">Password</label>
           <input type="password" class="input" id="password-input" placeholder="Password">
         </div>
         <div style="display: none" id="alert" class="alert alert-danger" role="alert">
@@ -24,5 +25,5 @@
     </div>
   </div>
 </div>
-<script src="js/signup.js"></script>
+<script src="/js/signup.js"></script>
 <%- include('layout/footer') -%>

@@ -1,24 +1,18 @@
 // Requiring path to so we can use relative routes to our HTML files
 var db = require("../models");
-var axios = require("axios");
 
 // Requiring our custom middleware for checking if a user is logged in
-//var isAuthenticated = require("../config/middleware/isAuthenticated");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 
 module.exports = function (app) {
 
   app.get("/", function (req, res) {
     // If the user already has an account send them to the members page
-    db.Review.findAll(
-      {
-        include: [db.User, db.Movie], order: [["updatedAt", "ASC"]]
-      }).then(function (myReviews) {
-      axios.get("http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + "goodfellas").then(function (omdbData) {
-        console.log(omdbData.data.Poster);
-        res.render("index", { title: "Most Recent Reviews", user: req.user, reviews: myReviews, img: omdbData.data.Poster });
-      });
-
+    db.Review.findAll({
+      include: [db.User, db.Movie], order: [["updatedAt", "DESC"]], limit: 10
+    }).then(function (myReviews) {
+      res.render("index", { title: "Most Recent Reviews", user: req.user, reviews: myReviews });
     });
   });
 
@@ -31,11 +25,25 @@ module.exports = function (app) {
   });
 
   app.get("/user/:id?", function (req, res) {
-    if (req.params.id) {
-      res.render("members", { msg: "WHO DAT", user: req.user });
+
+    if (!req.params.id && !req.user) {
+      res.redirect("/login");
+    } else {
+      let id = req.params.id || req.user.id;
+
+      db.Review.findAll({
+        where: {
+          UserId: id
+        },
+        include: [db.User, db.Movie]
+      }).then(function (dbReview) {
+        console.log(dbReview);
+        res.render("index", { title: "Reviews BY User", user: req.user, reviews: dbReview });
+      });
     }
-    res.render("members", { msg: "WHO DAT", user: req.user });
+
   });
+
 
   app.get("/login", function (req, res) {
     // If the user already has an account send them to the members page
@@ -50,24 +58,27 @@ module.exports = function (app) {
     res.render("signup", { user: null });
   });
 
-  app.get("/movie", function (req, res) {
-    res.send(404); // TODO
-  });
-  app.get("/user/:id", function (req, res) {
-    res.send(404); // TODO
+  // Route for logging user out
+  app.get("/logout", function (req, res) {
+    req.logout();
+    res.redirect("/");
   });
 
   app.get("/movie/:id", function (req, res) {
-    res.send(404); // TODO
+    db.Review.findAll({
+      where: {
+        MovieId: req.params.id
+      },
+      include: [db.User, db.Movie]
+    }).then(function (dbReview) {
+      console.log(dbReview);
+      res.render("index", { title: "Reviews", user: req.user, reviews: dbReview });
+    });
+
   });
 
-  app.get("/review/add", function (req, res) {
+  app.get("/review/add", isAuthenticated, function (req, res) {
     res.render("addReview", { user: req.user });
-  });
-
-  app.post("/review/add", function (req, res) {
-    // TODO
-    res.send(404);
   });
 
   app.get("/review", function (req, res) {
