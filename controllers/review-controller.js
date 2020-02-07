@@ -11,7 +11,7 @@ async function NormalizeMovie(title) {
     console.log("Title not found at OMDB");
     obj.title = title.trim();
   } else {
-    console.log("Title Found at OMDB");
+    console.log("Title Found at OMDB -", res.data.Title);
     obj.title = res.data.Title;
     obj.rating = res.data.Rated;
     obj.img = res.data.Poster;
@@ -59,20 +59,22 @@ module.exports = function (app) {
     if (!req.user) {
       res.send(401);
     }
-    console.log("DEBUG POST RX");
+
     // Get the Movie ID by finding it in the db or creating a new movie
     let id = await getMovieId(req.body.title);
 
     console.log("FINAL ID", id);
 
     try {
-      await db.Review.create({
+      // Create a new review in the database
+      const result = await db.Review.create({
         review: req.body.review,
         score: req.body.score,
         MovieId: id,
         UserId: req.user.id
       });
-      res.redirect("/");
+      // Redirect to the home page
+      res.json(result);
     } catch (err) {
       console.log("ERROR CREATING REVIEW", err);
       res.send(500);
