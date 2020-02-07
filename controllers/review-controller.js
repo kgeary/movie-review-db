@@ -1,7 +1,7 @@
 var db = require("../models");
 var normalize = require("../normalize");
 
-async function getMovieId(title, year) {
+async function getMovieId(title, year, t) {
   // Normalize the title using OMDB and get details if it is a new title
   const movie = await normalize(title, year);
 
@@ -11,7 +11,7 @@ async function getMovieId(title, year) {
   let id;
   if (!row) {
     // Movie Not Found! Add a New Entry to Database and return the Movie ID
-    const createResp = await db.Movie.create(movie);
+    const createResp = await db.Movie.create(movie, { transaction: t });
     id = createResp.id;
   } else {
     // Movie Found! Return ID
@@ -40,10 +40,10 @@ module.exports = function (app) {
 
     // Make a transaction. Only commit movie if review adds
     try {
-      await db.sequelize.transaction(async () => {
+      await db.sequelize.transaction(async (t) => {
 
         // Get the Movie ID by finding it in the db or creating a new movie
-        let id = await getMovieId(req.body.title, req.body.year);
+        let id = await getMovieId(req.body.title, req.body.year, t);
 
         console.log("FINAL ID", id);
 
@@ -53,7 +53,7 @@ module.exports = function (app) {
           score: req.body.score,
           MovieId: id,
           UserId: req.user.id
-        });
+        }, { transaction: t });
         // Return the result
         res.json(result);
       });
