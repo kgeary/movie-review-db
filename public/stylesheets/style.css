@@ -56,6 +56,19 @@ footer a {
   padding: 0;
 }
 
+.movie-image {
+  float: left;
+  width: 128px;
+  padding-right: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.movie-image::after {
+  clear: both;
+  display: block;
+  content: "";
+}
+
 @media screen and (max-width: 600px) {
   .media-header {
     flex-direction: column;
@@ -63,5 +76,9 @@ footer a {
   }
   .media-item {
     padding-left: 0;
+  }
+  .movie-image {
+    float: none;
+    width: 100%;
   }
 }
