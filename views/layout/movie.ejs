@@ -19,10 +19,6 @@
         <div class="media-item">
           Reviews: <strong><%= movie.Reviews.length %></strong>
         </div>
-        <div class="media-item">
-          <% movie.Reviews.sort((a,b) => b.updatedAt - a.updatedAt) %>
-          Last Reviewed: <strong><%= movie.Reviews.updatedAt %></strong>
-        </div>
       </div>
     </div>
   </article>

@@ -38,24 +38,28 @@ module.exports = function (app) {
       res.send(401);
     }
 
-    // Get the Movie ID by finding it in the db or creating a new movie
-    let id = await getMovieId(req.body.title, req.body.year);
-
-    console.log("FINAL ID", id);
-
+    // Make a transaction. Only commit movie if review adds
     try {
-      // Create a new review in the database
-      const result = await db.Review.create({
-        review: req.body.review,
-        score: req.body.score,
-        MovieId: id,
-        UserId: req.user.id
+      await db.sequelize.transaction(async () => {
+
+        // Get the Movie ID by finding it in the db or creating a new movie
+        let id = await getMovieId(req.body.title, req.body.year);
+
+        console.log("FINAL ID", id);
+
+        // Create a new review in the database
+        const result = await db.Review.create({
+          review: req.body.review,
+          score: req.body.score,
+          MovieId: id,
+          UserId: req.user.id
+        });
+        // Return the result
+        res.json(result);
       });
-      // Return the result
-      res.json(result);
     } catch (err) {
       console.log("ERROR CREATING REVIEW", err);
-      res.send(500);
+      res.json(err);
     }
 
   });

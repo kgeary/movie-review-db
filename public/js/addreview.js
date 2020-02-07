@@ -4,24 +4,52 @@ $(document).ready(function () {
   // Add Review Button Click Event
   $("#add-review").on("click", function (event) {
     event.preventDefault();
+    $("#alert .msg").text("");
+    $("#alert").hide();
     var newReview = {
       title: $("#title").val().trim(),
       score: $("#score").val().trim(),
       review: $("#review").val().trim(),
     };
 
+    if (newReview.title.length < 1) {
+      $("#alert .msg").text("Invalid Movie Name!");
+      $("#alert").fadeIn(500);
+      return;
+    }
+    if (newReview.review.length < 1) {
+      $("#alert .msg").text("Empty Reviews Not Allowed!");
+      $("#alert").fadeIn(500);
+      return;
+    }
+    if (Number.isNaN(newReview.score) || newReview.score > 10 || newReview.score < 0) {
+      $("#alert .msg").text("Invalid Score! Must be a number");
+      $("#alert").fadeIn(500);
+      return;
+    }
+
     // Post A New Review to Server
     $.post("/api/reviews", newReview)
       // on success, run this callback
       .then(function (res) {
         console.log("JSON RES", res);
-        // log the data we found
-        // empty each input box by replacing the value with an empty string
-        $("#title").val("");
-        $("#score").val("");
-        $("#review").val("");
-        // Redirect to the home page
-        window.location.replace("/");
+        if (res.errors && res.errors.length > 0) {
+          $("#alert .msg").text(res.errors.map(i => i.message).join("\n"));
+          $("#alert").fadeIn(500);
+        } else {
+          // log the data we found
+          // empty each input box by replacing the value with an empty string
+          $("#title").val("");
+          $("#score").val("");
+          $("#review").val("");
+          // Redirect to the home page
+          window.location.replace("/");
+        }
+
+      }).catch(function (err) {
+        $("#alert .msg").text(err.responseJSON.errors.map(i => i.message).join("\n"));
+        $("#alert").fadeIn(500);
+        console.log("ADDREVIEWERROR", err);
       });
   });
 
