@@ -42,6 +42,10 @@ footer a {
   margin: 2rem 1rem;
 }
 
+.movie-image {
+  border-radius: 7px;
+}
+
 .media-header {
   display: flex;
   justify-content: start;

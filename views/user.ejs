@@ -1,0 +1,30 @@
+<%- include('layout/header') -%>
+<%- include('layout/nav', {user}) -%>
+<div class="container">
+  <%- include('layout/search') -%>
+  <div id="content"></div>
+</div>
+<script src="js/index.js"></script>
+
+<div class="container">
+  <%  reviews.forEach(function(i) { %>
+  <div class="box review-box">
+    <article class="media">
+      <div class="media-left">
+        <figure class="image is-96x96">
+          <img class="movie-image" src="<%= img %>">
+        </figure>
+      </div>
+      <div class="media-content">
+        <p>
+          Movie: <a href="/movie/<%= i.Movie.id %>"><strong><%= i.Movie.title %></strong></a>
+          | Score: <strong><%= i.score %></strong>
+          | User: <a href="/user/<%= i.User.id %>"><%= i.User.email %> </a> </p>
+        <p><br><%= i.review %></p>
+      </div>
+    </article>
+  </div>
+  <% }) %>
+</div>
+
+<%- include('layout/footer') -%>
