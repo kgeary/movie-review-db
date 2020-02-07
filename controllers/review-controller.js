@@ -63,4 +63,17 @@ module.exports = function (app) {
     }
 
   });
+
+  //To delete user reviews
+  app.delete("/api/reviews/:id", function(req, res) {
+    db.Review.destroy({
+
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbReview) {
+      res.json(dbReview);
+    });
+  });
 };
+

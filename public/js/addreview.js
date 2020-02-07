@@ -52,7 +52,18 @@ $(document).ready(function () {
         console.log("ADDREVIEWERROR", err);
       });
   });
+  //click handler for delete button and passing data-id
 
+  $(".delete").on("click", function (event) {
+    event.preventDefault();
+    var val = $(this).data("id");
+    console.log(val);
+    $.ajax({
+      method: "DELETE",
+      url: "/api/reviews/" + val,
+    }).then( window.location.replace("/"));
+
+  });
   // Keep Track of The # of Characters Remaining
   var $review = $("#review");
   var $charsLeft = $("#charsRemain");
@@ -63,4 +74,5 @@ $(document).ready(function () {
     var charsRemain = LIMIT - $review.val().length;
     $charsLeft.text(charsRemain);
   });
+
 });

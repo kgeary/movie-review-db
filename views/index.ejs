@@ -12,7 +12,8 @@
   <h1 class="title">No Reviews Found</h1>
   <% } %>
   <%  reviews.forEach(function(i) { %>
-  <%- include('layout/review', {review: i}) -%>
+  <%- include('layout/review', {user, review: i}) -%>
+ 
   <% }) %>
 </div>
 <script src="/js/index.js"></script>
