@@ -1,0 +1,25 @@
+<div class="box review-box">
+  <article class="media">
+    <div class="media-left">
+      <figure class="image is-96x96">
+        <img class="movie-image" alt="Movie Coverbox" src="<%= movie.img %>">
+      </figure>
+    </div>
+    <div class="media-content">
+      <div class="media-header">
+        <div class="media-item">
+          Movie: <a href="/movie/<%= movie.id %>"><strong><%= movie.title %></strong></a>
+        </div>
+        <div class="media-item">
+          Year: <strong><%= movie.year %></strong>
+        </div>
+        <div class="media-item">
+          Rating: <strong><%= movie.rating %></strong>
+        </div>
+        <div class="media-item">
+          Reviews: <strong><%= movie.Reviews.length %></strong>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>

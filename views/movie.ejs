@@ -1,0 +1,14 @@
+<%- include('layout/header') -%>
+<%- include('layout/nav', {user}) -%>
+<div class="container">
+  <%- include('layout/search') -%>
+  <h1 class="title">Movies Reviewed</h1>
+  <%  if(!movies.length) { %>
+  <h1 class="title">No Movies Found</h1>
+  <% } %>
+  <%  movies.forEach(function(i) { %>
+  <%- include('layout/movie', {movie: i}) -%>
+  <% }) %>
+</div>
+<script src="/js/index.js"></script>
+<%- include('layout/footer') -%>
