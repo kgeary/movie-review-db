@@ -61,7 +61,9 @@ $(document).ready(function () {
     $.ajax({
       method: "DELETE",
       url: "/api/reviews/" + val,
-    }).then( window.location.replace("/"));
+    }).then(() => {
+      document.location.reload(true);
+    });
 
   });
   // Keep Track of The # of Characters Remaining
