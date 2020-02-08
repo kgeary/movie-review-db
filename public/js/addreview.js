@@ -28,7 +28,6 @@ $(document).ready(function () {
 
     // Create a list of possible movies to select for the user
     $.get(`/api/find/${title}`).then(function (movies) {
-      console.log("Movies", movies);
       movies.forEach((movie) => {
         var movieTitle = movie.Title;
         var movieYear = movie.Year;
@@ -39,6 +38,10 @@ $(document).ready(function () {
         $("#movieList").append(div);
       });
       $("#movieList").show();
+
+      if (movies.length < 1) {
+        $("#movieList").append($("<p>").text("No Movies Found!"));
+      }
 
       // Add a click handler for When a movie choice is selected
       $("#movieList").on("click", ".movie-choice", function () {
@@ -80,8 +83,8 @@ $(document).ready(function () {
       $("#alert").fadeIn(500);
       return;
     }
-    if (Number.isNaN(newReview.score) || newReview.score > 10 || newReview.score < 0) {
-      $("#alert .msg").text("Invalid Score! Must be a number");
+    if (Number.isNaN(newReview.score) || newReview.score > 10 || newReview.score < 1) {
+      $("#alert .msg").text("Invalid Score! Must be a number between 1 and 10");
       $("#alert").fadeIn(500);
       return;
     }
@@ -105,9 +108,11 @@ $(document).ready(function () {
         }
 
       }).catch(function (err) {
-        $("#alert .msg").text(err.responseJSON.errors.map(i => i.message).join("\n"));
-        $("#alert").fadeIn(500);
         console.log("ADDREVIEWERROR", err);
+        if (err.responseJSON) {
+          $("#alert .msg").text(err.responseJSON.errors.map(i => i.message).join("\n"));
+          $("#alert").fadeIn(500);
+        }
       });
   });
   //click handler for delete button and passing data-id

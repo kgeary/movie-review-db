@@ -1,28 +1,29 @@
 <div class="box review-box">
   <article class="media">
     <div class="media-content">
+      <% if(user && user.id === review.UserId) { %>
+      <button type="delete" title="Delete Review" class="delete" data-id="<%= review.id %>">Delete</button>
+      <% } %>
       <img class="image movie-image" alt="Movie Coverbox" src="<%= review.Movie.img %>">
       <div class="media-header">
         <div class="media-item">
-          Movie: <a href="/movie/<%= review.Movie.id %>"><strong><%= review.Movie.title %></strong></a>
+          <strong><a href="/movie/<%= review.Movie.id %>"><%= review.Movie.title %></a></strong>
+          <span>(<%= review.Movie.year %>)</span>
         </div>
-        <div class="media-item">
-          Score: <strong><%= review.score %></strong>
+        <div>
+          <div class="media-item">
+            Rating: <strong><%= review.Movie.rating %></strong>
+          </div>
+          <div class="media-item">
+            Review Score: <strong><%= review.score %></strong>
+          </div>
+          <div class="media-item">
+            Author: <strong><a href="/user/<%= review.User.id %>"><%= review.User.email %></a></strong>
+          </div>
+          <div class="media-item">
+            Updated: <strong><%= review.updatedAt.toDateString().slice(4) %></strong>
+          </div>
         </div>
-        <div class="media-item">
-          Rating: <strong><%= review.Movie.rating %></strong>
-        </div>
-        <div class="media-item">
-          User: <strong><a href="/user/<%= review.User.id %>"><%= review.User.email %></a></strong>
-        </div>
-        <div class="media-item">
-          Last Updated: <strong><%= review.updatedAt.toDateString().slice(4) %></strong>
-        </div>
-        <% if(user && user.id === review.UserId) { %>
-        <div class="media-item">
-          <button type="delete" title="Delete Review" class="delete" data-id="<%= review.id %>">Delete</button>
-        </div>
-        <% } %>
       </div>
       <p><br><%= review.review %></p>
     </div>

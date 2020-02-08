@@ -37,7 +37,7 @@ footer a {
 
 .review-box {
   min-height: 200px;
-  max-width: 80%;
+  max-width: 1000px;
   box-shadow: grey 10px 10px 10px;
   border: 1px solid gray;
   margin: 2rem auto;
@@ -53,16 +53,17 @@ footer a {
 
 .media-header {
   display: flex;
+  flex-direction: column;
   justify-content: start;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .media-item {
-  padding: 0.25rem 1rem;
+  padding: 0.2rem;
 }
 
 .media-item:first-child {
-  padding: 0;
+  padding-top: 0;
 }
 
 .movie-choice {
@@ -84,7 +85,7 @@ footer a {
   float: left;
   width: 128px;
   padding-right: 1rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
 }
 
 .movie-image::after {
@@ -99,6 +100,10 @@ h1.subtitle.is-2 {
 }
 
 .delete {
+  float: right;
+}
+
+.delete:hover {
   background-color: red;
 }
 
@@ -106,12 +111,6 @@ h1.subtitle.is-2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-@media screen and (max-width: 840px) {
-  .review-box {
-    max-width: 95%;
-  }
 }
 
 @media screen and (max-width: 723px) {
