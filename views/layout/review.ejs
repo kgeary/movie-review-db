@@ -13,10 +13,10 @@
           Rating: <strong><%= review.Movie.rating %></strong>
         </div>
         <div class="media-item">
-          User: <a href="/user/<%= review.User.id %>"><%= review.User.email %></a>
+          User: <strong><a href="/user/<%= review.User.id %>"><%= review.User.email %></a></strong>
         </div>
         <div class="media-item">
-          Last Updated: <%= review.updatedAt.toDateString() %>
+          Last Updated: <strong><%= review.updatedAt.toDateString() %></strong>
         </div>
         <% if(user && user.id === review.UserId) { %>
         <div class="media-item">

@@ -3,11 +3,11 @@
 <div class="container has-text-centered">
   <%- include('layout/search') -%>
   <% if(user) { %>
-  <h1 class="title">Welcome <%= user.email %></h1>
+  <h1 class="subtitle is-2">Welcome <%= user.email %></h1>
   <% } else { %>
-  <h1 class="title">Reviews</h1>
+  <h1 class="subtitle is-2">Reviews</h1>
   <% } %>
-  <h4 class="subtitle"><%= title %></h4>
+  <h4 class="subtitle is-4"><%= title %></h4>
   <%  if(!reviews.length) { %>
   <h4 class="subtitle">No Reviews Found</h4>
   <% } %>
@@ -16,5 +16,4 @@
 
   <% }) %>
 </div>
-<script src="/js/index.js"></script>
 <%- include('layout/footer') -%>

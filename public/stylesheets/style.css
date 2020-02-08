@@ -37,9 +37,18 @@ footer a {
 
 .review-box {
   min-height: 200px;
+  width: 80%;
   box-shadow: grey 10px 10px 10px;
   border: 1px solid gray;
-  margin: 2rem 1rem;
+  margin: 2rem auto;
+}
+
+.movie-box {
+  min-height: 200px;
+  width: 400px;
+  box-shadow: grey 10px 10px 10px;
+  border: 1px solid gray;
+  margin: 2rem auto;
 }
 
 .media-header {
@@ -84,6 +93,11 @@ footer a {
   content: "";
 }
 
+h1.subtitle.is-2 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
 @media screen and (max-width: 600px) {
   .media-header {
     flex-direction: column;
@@ -91,9 +105,6 @@ footer a {
   }
   .media-item {
     padding-left: 0;
-  }
-  .media-item strong {
-    display: block;
   }
   .movie-image {
     float: none;
@@ -104,5 +115,8 @@ footer a {
   }
   .image {
     margin-right: 0;
+  }
+  .review-box, .movie-box {
+    width: 100%;
   }
 }

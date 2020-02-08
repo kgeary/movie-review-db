@@ -2,13 +2,12 @@
 <%- include('layout/nav', {user}) -%>
 <div class="container has-text-centered">
   <%- include('layout/search') -%>
-  <h1 class="title">Movies Reviewed</h1>
+  <h1 class="subtitle is-2">Movies Reviewed</h1>
   <%  if(!movies.length) { %>
-  <h1 class="title">No Movies Found</h1>
+  <h1 class="subtitle is-2">No Movies Found</h1>
   <% } %>
   <%  movies.forEach(function(i) { %>
   <%- include('layout/movie', {movie: i}) -%>
   <% }) %>
 </div>
-<script src="/js/index.js"></script>
 <%- include('layout/footer') -%>
