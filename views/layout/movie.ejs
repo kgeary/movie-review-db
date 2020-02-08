@@ -21,10 +21,12 @@
           Reviews:
           <strong><%= movie.Reviews.length %></strong>
         </div>
+        <% if (movie.Reviews.length > 0) { %>
         <div class="media-item">
           Avg Score:
           <strong><%= (movie.Reviews.map(i => parseFloat(i.score)).reduce((a,b) => (a+b)) / movie.Reviews.length).toFixed(1) %></strong>
         </div>
+        <% } %>
       </div>
     </div>
   </article>
