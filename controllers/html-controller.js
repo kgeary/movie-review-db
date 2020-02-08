@@ -1,5 +1,6 @@
 // Requiring path to so we can use relative routes to our HTML files
 var db = require("../models");
+var Op = db.Sequelize.Op;
 
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
@@ -19,6 +20,25 @@ module.exports = function (app) {
   // Redirect to /
   app.get("/index", function (req, res) {
     res.redirect("/");
+  });
+
+  app.get("/search", async function (req, res) {
+    if (!req.query || !req.query.t) {
+      res.send(400); // BAD REQUEST
+    }
+
+    const movies = await db.Movie.findAll({
+      where: { title: { [Op.like]: `%${req.query.t}%` } }
+    });
+
+    ids = movies.map(i => i.id);
+
+    const reviews = await db.Review.findAll({
+      include: [db.Movie, db.User],
+      where: { MovieId: { [Op.in]: ids } }
+    });
+
+    res.render("index", { user: req.user, title: `Reviews matching ${req.query.t}`, reviews: reviews });
   });
 
   app.get("/user/:id?", function (req, res) {
