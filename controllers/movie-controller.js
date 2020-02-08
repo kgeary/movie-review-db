@@ -1,6 +1,4 @@
-var db = require("../models");
 var axios = require("axios");
-var normalize = require("../normalize");
 
 // Get the possible matches for the movie entered
 module.exports = function (app) {
