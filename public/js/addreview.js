@@ -7,7 +7,7 @@ $(document).ready(function () {
     $("#mainForm").hide();
     $("#review").val("");
     $("#score").val("");
-    $("#title").val("").attr("readonly", "false");
+    $("#title").val("").attr("readonly", null);
     $("#clearMovie").hide();
     $("#findMovie").show();
   });
@@ -39,21 +39,24 @@ $(document).ready(function () {
         $("#movieList").append(div);
       });
       $("#movieList").show();
+
+      // Add a click handler for When a movie choice is selected
+      $("#movieList").on("click", ".movie-choice", function () {
+        console.log("CLICK DETECCTED");
+        var imdb = $(this).data("id");
+        var title = $(this).data("title");
+        $("#movieList").hide().empty();
+        $("#title").val(title).attr("data-id", imdb);
+        $("#title").attr("readonly", true);
+        $("#findMovie").hide();
+        $("#clearMovie").show();
+        $("#mainForm").show();
+        $('#movieList').off('click');
+      });
     });
   });
 
-  // When a movie choice is selected
-  $("#movieList").on("click", ".movie-choice", function () {
-    console.log("CLICK DETECCTED");
-    var imdb = $(this).data("id");
-    var title = $(this).data("title");
-    $("#movieList").hide().empty();
-    $("#title").val(title).attr("data-id", imdb);
-    $("#title").attr("readonly", true);
-    $("#findMovie").hide();
-    $("#clearMovie").show();
-    $("#mainForm").show();
-  });
+
 
   // Add Review Button Click Event
   $("#add-review").on("click", function (event) {
