@@ -51,7 +51,7 @@ $(document).ready(function () {
         $("#findMovie").hide();
         $("#clearMovie").show();
         $("#mainForm").show();
-        $('#movieList').off('click');
+        $("#movieList").off("click");
       });
     });
   });
