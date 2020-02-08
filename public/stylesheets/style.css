@@ -48,7 +48,7 @@ footer a {
   width: 400px;
   box-shadow: grey 10px 10px 10px;
   border: 1px solid gray;
-  margin: 2rem auto;
+  margin: 2rem 2rem;
 }
 
 .media-header {
@@ -102,6 +102,12 @@ h1.subtitle.is-2 {
   background-color: red;
 }
 
+.all-movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 @media screen and (max-width: 840px) {
   .review-box {
     max-width: 95%;
@@ -128,5 +134,7 @@ h1.subtitle.is-2 {
   }
   .review-box, .movie-box {
     width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 }

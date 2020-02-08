@@ -6,8 +6,10 @@
   <%  if(!movies.length) { %>
   <h1 class="subtitle is-2">No Movies Found</h1>
   <% } %>
-  <%  movies.forEach(function(i) { %>
-  <%- include('layout/movie', {movie: i}) -%>
-  <% }) %>
+  <div class="all-movies">
+    <%  movies.forEach(function(i) { %>
+    <%- include('layout/movie', {movie: i}) -%>
+    <% }) %>
+  </div>
 </div>
 <%- include('layout/footer') -%>

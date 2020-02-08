@@ -16,7 +16,7 @@
           User: <strong><a href="/user/<%= review.User.id %>"><%= review.User.email %></a></strong>
         </div>
         <div class="media-item">
-          Last Updated: <strong><%= review.updatedAt.toDateString() %></strong>
+          Last Updated: <strong><%= review.updatedAt.toDateString().slice(4) %></strong>
         </div>
         <% if(user && user.id === review.UserId) { %>
         <div class="media-item">
