@@ -92,8 +92,17 @@ footer a {
   .media-item {
     padding-left: 0;
   }
+  .media-item strong {
+    display: block;
+  }
   .movie-image {
     float: none;
     width: 100%;
+  }
+  .column {
+    padding: 1rem;
+  }
+  .image {
+    margin-right: 0;
   }
 }
