@@ -5,15 +5,15 @@
   <% if(user) { %>
   <h1 class="title">Welcome <%= user.email %></h1>
   <% } else { %>
-  <h1 class="title">Check out All the Reviews!</h1>
+  <h1 class="title">Reviews</h1>
   <% } %>
   <h4 class="subtitle"><%= title %></h4>
   <%  if(!reviews.length) { %>
-  <h1 class="title">No Reviews Found</h1>
+  <h4 class="subtitle">No Reviews Found</h4>
   <% } %>
   <%  reviews.forEach(function(i) { %>
   <%- include('layout/review', {user, review: i}) -%>
- 
+
   <% }) %>
 </div>
 <script src="/js/index.js"></script>
