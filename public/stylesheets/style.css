@@ -36,7 +36,7 @@ footer a {
 }
 
 .review-box {
-  min-height: 235px;
+  min-height: 200px;
   box-shadow: grey 10px 10px 10px;
   border: 1px solid gray;
   margin: 2rem 1rem;
@@ -54,6 +54,21 @@ footer a {
 
 .media-item:first-child {
   padding: 0;
+}
+
+.movie-choice {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid gray;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.movie-choice:hover {
+  background-color: lightgray;
+  color: whitesmoke;
 }
 
 .movie-image {
@@ -77,8 +92,17 @@ footer a {
   .media-item {
     padding-left: 0;
   }
+  .media-item strong {
+    display: block;
+  }
   .movie-image {
     float: none;
     width: 100%;
+  }
+  .column {
+    padding: 1rem;
+  }
+  .image {
+    margin-right: 0;
   }
 }

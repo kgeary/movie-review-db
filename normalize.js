@@ -1,12 +1,16 @@
 var axios = require("axios");
 
-async function normalizeMovie(title, year) {
-  let url = "http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + title;
+// Search for movie by IMDB ID, use the user provided title as a backup.
+async function normalize(title, imdb) {
 
-  // Allow the user to request a specific year
-  if (year) {
-    url += "&y=" + year;
+  let url;
+
+  if (imdb) {
+    url = "http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&i=" + imdb;
+  } else {
+    url = "http://www.omdbapi.com/?apikey=" + process.env.OMDB_KEY + "&t=" + title;
   }
+
   const res = await axios.get(url);
 
   let obj = {};
@@ -29,4 +33,4 @@ async function normalizeMovie(title, year) {
   return obj;
 }
 
-module.exports = normalizeMovie;
+module.exports = normalize;

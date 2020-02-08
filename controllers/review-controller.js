@@ -1,9 +1,9 @@
 var db = require("../models");
 var normalize = require("../normalize");
 
-async function getMovieId(title, year, t) {
+async function getMovieId(imdb, title, t) {
   // Normalize the title using OMDB and get details if it is a new title
-  const movie = await normalize(title, year);
+  const movie = await normalize(title, imdb);
 
   // See if the movie exists in our database the movie in our database
   const row = await db.Movie.findOne({ where: { title: movie.title } });
@@ -31,7 +31,7 @@ module.exports = function (app) {
     res.json(dbReview);
   });
 
-  // POST route for saving a new post
+  // POST route for saving a new review
   app.post("/api/reviews", async function (req, res) {
     // Only allow authenticated users to post
     if (!req.user) {
@@ -43,7 +43,7 @@ module.exports = function (app) {
       await db.sequelize.transaction(async (t) => {
 
         // Get the Movie ID by finding it in the db or creating a new movie
-        let id = await getMovieId(req.body.title, req.body.year, t);
+        let id = await getMovieId(req.body.imdb, req.body.title, t);
 
         console.log("FINAL ID", id);
 
@@ -65,13 +65,13 @@ module.exports = function (app) {
   });
 
   //To delete user reviews
-  app.delete("/api/reviews/:id", function(req, res) {
+  app.delete("/api/reviews/:id", function (req, res) {
     db.Review.destroy({
 
       where: {
         id: req.params.id
       }
-    }).then(function(dbReview) {
+    }).then(function (dbReview) {
       res.json(dbReview);
     });
   });

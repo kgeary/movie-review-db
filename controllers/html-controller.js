@@ -57,7 +57,13 @@ module.exports = function (app) {
       include: [db.User, db.Movie]
     }).then(function (dbReview) {
       console.log(dbReview);
-      res.render("index", { title: "Reviews by Movie", user: req.user, reviews: dbReview });
+      let title;
+      if (dbReview && dbReview.length > 0) {
+        title = `Reviews for ${dbReview[0].Movie.title}`;
+      } else {
+        title = "Not Found";
+      }
+      res.render("index", { title: title, user: req.user, reviews: dbReview });
     });
 
   });
