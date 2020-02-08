@@ -37,9 +37,18 @@ footer a {
 
 .review-box {
   min-height: 200px;
+  max-width: 80%;
   box-shadow: grey 10px 10px 10px;
   border: 1px solid gray;
-  margin: 2rem 1rem;
+  margin: 2rem auto;
+}
+
+.movie-box {
+  min-height: 200px;
+  width: 400px;
+  box-shadow: grey 10px 10px 10px;
+  border: 1px solid gray;
+  margin: 2rem 2rem;
 }
 
 .media-header {
@@ -84,16 +93,34 @@ footer a {
   content: "";
 }
 
-@media screen and (max-width: 600px) {
+h1.subtitle.is-2 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.delete {
+  background-color: red;
+}
+
+.all-movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media screen and (max-width: 840px) {
+  .review-box {
+    max-width: 95%;
+  }
+}
+
+@media screen and (max-width: 723px) {
   .media-header {
     flex-direction: column;
     align-items: start;
   }
   .media-item {
     padding-left: 0;
-  }
-  .media-item strong {
-    display: block;
   }
   .movie-image {
     float: none;
@@ -103,6 +130,11 @@ footer a {
     padding: 1rem;
   }
   .image {
+    margin-right: 0;
+  }
+  .review-box, .movie-box {
+    width: 100%;
+    margin-left: 0;
     margin-right: 0;
   }
 }

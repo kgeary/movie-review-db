@@ -1,22 +1,32 @@
-<div class="box review-box">
+<div class="box movie-box">
   <article class="media">
     <div class="media-content">
       <a href="/movie/<%= movie.id %>">
         <img class="image movie-image" alt="Movie Coverbox" src="<%= movie.img %>">
       </a>
-      <div class="media-header">
+      <div class="movie-header">
         <div class="media-item">
-          Movie: <a href="/movie/<%= movie.id %>"><strong><%= movie.title %></strong></a>
+          Movie:
+          <a href="/movie/<%= movie.id %>"><strong><%= movie.title %></strong></a>
         </div>
         <div class="media-item">
-          Year: <strong><%= movie.year %></strong>
+          Year:
+          <strong><%= movie.year %></strong>
         </div>
         <div class="media-item">
-          Rating: <strong><%= movie.rating %></strong>
+          Rating:
+          <strong><%= movie.rating %></strong>
         </div>
         <div class="media-item">
-          Reviews: <strong><%= movie.Reviews.length %></strong>
+          Reviews:
+          <strong><%= movie.Reviews.length %></strong>
         </div>
+        <% if (movie.Reviews.length > 0) { %>
+        <div class="media-item">
+          Avg Score:
+          <strong><%= (movie.Reviews.map(i => parseFloat(i.score)).reduce((a,b) => (a+b)) / movie.Reviews.length).toFixed(1) %></strong>
+        </div>
+        <% } %>
       </div>
     </div>
   </article>

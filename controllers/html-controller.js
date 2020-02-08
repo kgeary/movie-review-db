@@ -57,7 +57,7 @@ module.exports = function (app) {
         include: [db.User, db.Movie]
       }).then(function (dbReview) {
         console.log(dbReview);
-        res.render("index", { title: "Reviews BY User", user: req.user, reviews: dbReview });
+        res.render("index", { title: "Reviews by User", user: req.user, reviews: dbReview });
       });
     }
 
