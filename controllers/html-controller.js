@@ -23,7 +23,8 @@ module.exports = function (app) {
   });
 
   app.get("/search", async function (req, res) {
-    if (!req.query || !req.query.t) {
+
+    if (!req.query) {
       res.send(400); // BAD REQUEST
     }
 
