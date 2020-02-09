@@ -6,7 +6,7 @@ Aa a movie viewer I want a database of movie reviews created by other viewers so
 
 ## Problems Solved:
 - Provide more relevant movie reviews by other users rather than from professional movie critics.
-- Provide a searchable database of movie reviews that can be explored any time, with a clean,uncluttered, responsive interface. 
+- Provide a searchable database of movie reviews that can be explored any time,with a clean,uncluttered, responsive interface. 
 
 ## Link to the live website:
 
@@ -43,7 +43,7 @@ https://lit-inlet-19657.herokuapp.com/
 ![Image description](/public/img/createReviewScreenShot.png)
 
 ## Contributors:
-- Bhavana Nuthalapati – Routes, APIs
-- Kevin Geary – Routes, .ejs, database
-- Maria Dawes-Tedesco –  Presentation, HTML, database
-- Patrick Duquette –  HTML, Bulma, Readme
+- Bhavana Nuthalapati – Routes,APIs
+- Kevin Geary – Routes,.ejs,database
+- Maria Dawes-Tedesco – Presentation,HTML,database
+- Patrick Duquette – HTML,Bulma,Readme
