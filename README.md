@@ -1,14 +1,35 @@
 # Team 2 Project 2 - Movie Review API
 
-USER STORY
+## USER STORY
 
-AS a movie viewer
-
-I WANT a database of movie reviews created by other viewers
-
-SO THAT I can read reviews of movies before I pay for them.
+Aa a movie viewer I want a database of movie reviews created by other viewers so that I can read reviews of movies that are more relevant to me than film critic reviews.
 
 
 ## Problems Solved:
-1. 
-2. 
+1. Provide more relevant movie reviews by other users rather than from professional movie critics.
+2. Provide a searchable database of movie reviews that can be explored any time, with a clean, uncluttered, responsive interface. 
+
+## Functions:
+1. Present a landing page with the most recent user reviews listed. 
+2. Allow users to log in or sign up. 
+3. Once logged in, allow the user to create a new review. 
+4. Each movie card on the main page contains links to all the reviews by the specific user, as well as a link to all review for that movie. 
+5. Allow the user to see all their previously submitted reviews.  
+
+## Screenshots:
+Landing Page:
+![Image description](/public/img/landingPageScreenShot.png)
+
+Movies Page:
+
+![Image description](/public/img/moviesPageScreenShot.png)
+
+Create Review Page:
+
+![Image description](/public/img/createReviewScreenShot.png)
+
+## Contributors:
+Bhavana Nuthalapati – Routes, APIs
+Kevin Geary – Routes, .ejs, database
+Maria Dawes-Tedesco –  Presentation, HTML, database
+Patrick Duquette –  HTML, Bulma, Readme
