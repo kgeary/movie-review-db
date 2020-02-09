@@ -18,7 +18,7 @@
             Review Score: <strong><%= review.score %></strong>
           </div>
           <div class="media-item">
-            Author: <strong><a href="/user/<%= review.User.id %>"><%= review.User.email %></a></strong>
+            User: <strong><a href="/user/<%= review.User.id %>"><%= review.User.email %></a></strong>
           </div>
           <div class="media-item">
             Updated: <strong><%= review.updatedAt.toDateString().slice(4) %></strong>
