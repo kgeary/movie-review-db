@@ -43,7 +43,7 @@ https://lit-inlet-19657.herokuapp.com/
 ![Image description](/public/img/createReviewScreenShot.png)
 
 ## Contributors:
-- Bhavana Nuthalapati – Routes,APIs
+
 - Kevin Geary – Routes,.ejs,database
 - Maria Dawes-Tedesco – Presentation,HTML,database
 - Patrick Duquette – HTML,Bulma,Readme
